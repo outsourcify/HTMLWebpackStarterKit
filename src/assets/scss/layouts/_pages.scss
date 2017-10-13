@@ -1,0 +1,14 @@
+.articles {
+    @include clearfix;
+    .article {
+        @include span(100%);
+    }
+}
+
+@include breakpoint($desktop) {
+    .articles {
+        .article {
+            @include span(4 of 12);
+        }
+    }
+}

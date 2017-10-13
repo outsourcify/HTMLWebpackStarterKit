@@ -1,0 +1,26 @@
+.app {
+    @include clearfix;
+    height: 100vh;
+    .content {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(112, 172, 142, 0.25);
+        @include breakpoint($tablet) {
+            @include span(6 of 12);
+        }
+        @include breakpoint($desktop) {
+            @include span(8 of 12);
+        }
+    }
+    .sidebar {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(242, 42, 128, 0.25);
+        @include breakpoint($tablet) {
+            @include span(6 of 12);
+        }
+        @include breakpoint($desktop) {
+            @include span(4 of 12);
+        }
+    }
+}

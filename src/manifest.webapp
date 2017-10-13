@@ -1,0 +1,25 @@
+{
+	"version": "1.0.0",
+	"name": "Outsourcify Webpack Starter",
+	"launch_path": "/index.html",
+	"description": "Outsourcify Webpack Starter",
+	"icons": {
+		"128": "/img/icon-128x128.png"
+	},
+	"developer": {
+		"name": "Outsourcify",
+		"url": "https://outsourcify.net"
+	},
+	"installs_allowed_from": [
+		"*"
+	],
+	"default_locale": "en",
+	"permissions": {
+	},
+	"locales": {
+		"en": {
+			"name": "Outsourcify Webpack Starter",
+			"description": "Outsourcify Webpack Starter"
+		}
+	}
+}
