@@ -1,0 +1,76 @@
+//
+// Buttons
+// --------------------------------------------------
+.btn {
+    border: none;
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    transition: 0.2s ease-in-out;
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+    white-space: nowrap;
+    box-shadow: 0px 4px 7px 0px rgba(0, 0, 0, 0.28);
+    transform-origin: bottom;
+    &:hover,
+    &:focus,
+    &.focus {
+        opacity: 0.8;
+        box-shadow: none;
+        transform: scale(0.99);
+    }
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] & {
+        cursor: no-drop;
+        background: #ababab;
+    }
+    &.no-shadow {
+        box-shadow: none;
+        &:hover,
+        &:focus,
+        &.focus {
+            opacity: 0.8;
+            box-shadow: none;
+            transform: none;
+        }
+    }
+}
+
+a.btn {
+    &.disabled,
+    fieldset[disabled] & {
+        pointer-events: none; // Future-proof disabling of clicks on `<a>` elements
+    }
+}
+
+// Alternate buttons
+// --------------------------------------------------.
+
+// Block button
+// --------------------------------------------------
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+// Vertically space out multiple block buttons
+.btn-block+.btn-block {
+    margin-top: 0.5rem;
+}
+
+// Specificity overrides
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+    &.btn-block {
+        width: 100%;
+    }
+}

@@ -1,0 +1,81 @@
+//
+// Variables
+// --------------------------------------------------
+
+//== Colors
+//
+// --------------------------------------------------
+$white:               #fff !default;
+$black:               #000 !default;
+$gray-darker:           lighten($black, 13.5%) !default; // #222
+$gray-dark:             lighten($black, 20%) !default;   // #333
+$gray:                  lighten($black, 33.5%) !default; // #555
+$gray-light:            lighten($black, 46.7%) !default; // #777
+$gray-lighter:          lighten($black, 93.5%) !default; // #eee
+
+$brand-primary:       #02474f !default;
+$brand:               #489889 !default;
+$brand-light:         #dfedeb !default;
+$brand-noteworthy:    #f5dcb2 !default;
+$yellow:              #f2dab1;
+$white-dark:          #d9d9d9;
+$light-green:         #c2ddd8;
+
+//== Scaffolding
+//
+//## Settings for some of the most global styles.
+
+//** Background color for `<body>`.
+$body-bg:             #fff !default;
+//** Global text color on `<body>`.
+$text-color:            $gray-darker !default;
+
+
+//** Global textual link color.
+$link-color:            $brand-primary !default;
+//** Link hover color set via `darken()` function.
+$link-hover-color:      darken($link-color, 15%) !default;
+//** Link hover decoration.
+$link-hover-decoration: underline !default;
+
+
+
+//== Typography
+//
+//## Font, line-height, and color for body text, headings, and more.
+
+$font-family-base:      "Gotham Book", Helvetica, Arial, sans-serif !default;
+
+
+$font-size-base:        1.4rem !default;
+$font-size-large:       1.6rem !default;
+$font-size-small:       1.2rem !default;
+
+$font-size-h1:          3.6rem !default;
+$font-size-h2:          2.4rem !default;
+$font-size-h3:          1.8rem !default;
+$font-size-h4:          1.6rem !default;
+$font-size-h5:          $font-size-base !default;
+$font-size-h6:          1.2rem !default;
+
+//** By default, this inherits from the `<body>`.
+$headings-font-family-dinot:    'DINOT' !default;
+$headings-font-family:          'Playfair Display' !default;
+$headings-font-weight:           500 !default;
+$headings-line-height:           1.1 !default;
+$headings-color:                 inherit !default;
+
+
+$headings-font-family-gotham:    'Gotham' !default;
+//== Screen size
+//
+// NOTE: calculated from `rem` start with size iPhone5 (568px*320px)
+$screen-width:     42.6rem;
+$screen-height:    23.6rem;
+
+
+
+//== Media queries breakpoints
+//
+// For Container centered.
+$screen-sm: 768px !default;

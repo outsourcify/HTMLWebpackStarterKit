@@ -1,85 +1,98 @@
-const path = require('path'),
-    webpack = require('webpack'),
-    CleanWebpackPlugin = require('clean-webpack-plugin'),
-    HtmlWebpackPlugin = require('html-webpack-plugin'),
-    ExtractTextPlugin = require('extract-text-webpack-plugin');
+var webpack = require("webpack");
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require("path");
 
-const extractPlugin = new ExtractTextPlugin({ filename: './assets/css/app.css' });
-
-const config = {
-
-    // absolute path for project root
-    context: path.resolve(__dirname, 'src'),
-
-    entry: {
-        // relative path declaration
-        app: './js/scripts.js'
-    },
-
+module.exports = {
+    entry: ["./src/js/index.js", "./src/scss/main.scss"],
     output: {
-        // absolute path declaration
-        path: path.resolve(__dirname, 'dist'),
-        filename: './assets/js/[name].bundle.js'
+        filename: "js/index.js",
+        path: path.join(__dirname, "./build/")
     },
-
+    devServer: {
+        contentBase: "./build"
+    },
     module: {
-        rules: [
-
-            // babel-loader with 'env' preset
-            { test: /\.js$/, include: /src/, exclude: /node_modules/, use: { loader: "babel-loader", options: { presets: ['env'] } } },
-            // html-loader
-            { test: /\.html$/, use: ['html-loader'] },
-            // sass-loader with sourceMap activated
+        rules: [{
+                test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: 'fonts/',
+                        publicPath: '../'
+                    }
+                }]
+            },
+            {
+                test: /\.(svg|png|jpe?g)/i,
+                use: [{
+                        loader: "url-loader",
+                        options: {
+                            name: "./images/[name].[ext]",
+                            limit: 5000
+                        }
+                    },
+                    {
+                        loader: "img-loader"
+                    }
+                ]
+            },
             {
                 test: /\.scss$/,
-                include: [path.resolve(__dirname, 'src', 'assets', 'scss')],
-                use: extractPlugin.extract({
+                use: ExtractTextPlugin.extract({
                     use: [{
-                            loader: 'css-loader',
+                            loader: "css-loader",
                             options: {
-                                sourceMap: true
+                                minimize: true
                             }
                         },
                         {
-                            loader: 'sass-loader',
-                            options: {
-                                sourceMap: true
-                            }
+                            loader: "postcss-loader"
+                        },
+                        {
+                            loader: "sass-loader"
                         }
-                    ],
-                    fallback: 'style-loader'
+                    ]
                 })
-            },
-            // file-loader(for images)
-            { test: /\.(jpg|png|gif|svg)$/, use: [{ loader: 'file-loader', options: { name: '[name].[ext]', outputPath: './assets/img/' } }] },
-            // file-loader(for fonts)
-            { test: /\.(woff|woff2|eot|ttf|otf)$/, use: ['file-loader'] }
-
+            }
+            /*,
+            {
+                test: /\.js$/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ["env"]
+                    }
+                }
+            }*/
         ]
     },
-
     plugins: [
-        // cleaning up only 'dist' folder
-        new CleanWebpackPlugin(['dist']),
-        new HtmlWebpackPlugin({
-            template: 'index.html'
+        new HtmlWebPackPlugin({
+            template: "./src/index.html",
+            filename: "./index.html"
         }),
-        // extract-text-webpack-plugin instance
-        extractPlugin
+        new HtmlWebPackPlugin({
+            template: "./src/contact.html",
+            filename: "./contact.html"
+        }),
+        new ExtractTextPlugin({
+            filename: "css/main.css"
+        }),
+        new CopyWebpackPlugin([{
+            from: 'src/images',
+            to: 'images'
+        }]),
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery"
+        })
     ],
-
-    devServer: {
-        // static files served from here
-        contentBase: path.resolve(__dirname, "./dist/assets/img"),
-        compress: true,
-        // open app in localhost:2000
-        port: 2000,
-        stats: 'errors-only',
-        open: true
-    },
-
-    devtool: 'inline-source-map'
-
+    resolve: {
+        alias: {
+            jquery: "jquery/src/jquery"
+        }
+    }
 };
-
-module.exports = config;
