@@ -7,35 +7,40 @@
     "private": true,
     "license": "WTFPL",
     "scripts": {
-        "start": "webpack-dev-server --open",
-        "build": "webpack",
-        "watch": "webpack --watch"
+        "start": "webpack-dev-server --mode development --open",
+        "build": "webpack --mode development",
+        "dist": "webpack --mode production",
+        "watch": "webpack --watch --mode development"
     },
     "engines": {
         "node": ">= 0.12.0",
         "npm": ">=2.1.5"
     },
     "dependencies": {
-        "jquery": "^3.3.1"
+        "jquery": "^3.4.1"
     },
     "devDependencies": {
-        "babel-core": "^6.26.0",
-        "babel-loader": "^7.1.2",
-        "babel-preset-env": "^1.6.1",
-        "bootstrap": "^4.0.0-beta.2",
-        "copy-webpack-plugin": "^4.4.1",
-        "css-loader": "^0.28.7",
-        "extract-text-webpack-plugin": "^3.0.1",
-        "file-loader": "^1.1.5",
-        "html-loader": "^0.5.1",
-        "html-webpack-plugin": "^2.30.1",
-        "img-loader": "^2.0.0",
-        "node-sass": "^4.5.3",
-        "postcss-loader": "^2.0.8",
-        "sass-loader": "^6.0.6",
-        "url-loader": "^0.6.2",
-        "webpack": "^3.8.1",
-        "webpack-dev-server": "^2.11.1"
+        "@babel/core": "^7.4.0",
+        "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+        "@babel/preset-env": "^7.0.0",
+        "autoprefixer": "^9.6.1",
+        "babel-loader": "^8.0.6",
+        "copy-webpack-plugin": "^5.0.3",
+        "css-loader": "^3.0.0",
+        "file-loader": "^4.0.0",
+        "html-loader": "^0.5.5",
+        "html-webpack-plugin": "^3.2.0",
+        "img-loader": "^3.0.1",
+        "mini-css-extract-plugin": "^0.7.0",
+        "node-sass": "^4.12.0",
+        "optimize-css-assets-webpack-plugin": "^5.0.3",
+        "postcss-loader": "^3.0.0",
+        "sass-loader": "^7.1.0",
+        "terser-webpack-plugin": "^1.3.0",
+        "url-loader": "^2.0.1",
+        "webpack": "^4.35.2",
+        "webpack-cli": "^3.3.5",
+        "webpack-dev-server": "^3.7.2"
     },
     "browserslist": [
         "last 2 versions"
