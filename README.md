@@ -1,4 +1,5 @@
-# HTML Starter with Webpack
+# Outsourcify's HTML Starter with Webpack
+# https://outsourcify.net
 
 Install the dependencies:
 
@@ -6,14 +7,20 @@ Install the dependencies:
 npm i
 ```
 
-Build:
+Development Build:
 
 ```bash
 npm run build
 ```
 
-Server start:
+Development Build:
 
 ```bash
-npm start
+npm run dist
+```
+
+Server start (open a new browser window):
+
+```bash
+npm run start
 ```
