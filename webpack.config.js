@@ -1,4 +1,6 @@
 var webpack = require("webpack");
+const path = require("path");
+const fs = require('fs');
 
 // include the js minification plugin
 const TerserPlugin = require('terser-webpack-plugin');
@@ -8,9 +10,25 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 // include the js minification plugin
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+const HTMLWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const path = require("path");
+
+function generateHtmlPlugins (templateDir) {
+    const templateFiles = fs.readdirSync(path.resolve(__dirname, templateDir))
+    return templateFiles.map(item => {
+      // Split names and extension
+      const parts = item.split('.')
+      const name = parts[0]
+      const extension = parts[1]
+      return new HTMLWebpackPlugin({
+        filename: `${name}.html`,
+        template: path.resolve(__dirname, `${templateDir}/${name}.${extension}`)
+      })
+    })
+  }
+  
+  // We will call the function like this:
+  const htmlPlugins = generateHtmlPlugins('./src/pages')
 
 module.exports = {
     entry: ["./src/js/index.js", "./src/scss/main.scss"],
@@ -91,27 +109,9 @@ module.exports = {
                     }
                 ]
             }
-            /*,
-            {
-                test: /\.js$/,
-                use: {
-                    loader: "babel-loader",
-                    options: {
-                        presets: ["env"]
-                    }
-                }
-            }*/
         ]
     },
     plugins: [
-        new HtmlWebPackPlugin({
-            template: "./src/index.html",
-            filename: "./index.html"
-        }),
-        new HtmlWebPackPlugin({
-            template: "./src/contact.html",
-            filename: "./contact.html"
-        }),
         new MiniCssExtractPlugin({
             filename: "css/main.css"
           }),
@@ -123,7 +123,7 @@ module.exports = {
             $: "jquery",
             jQuery: "jquery"
         })
-    ],
+    ].concat(htmlPlugins),
     optimization: {
         minimizer: [
             // enable the js minification plugin
