@@ -114,7 +114,7 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: "css/main.[hash:8].css"
+            filename: "css/main.[contenthash:8].css"
           }),
         new CopyWebpackPlugin([{
             from: 'src/images',
