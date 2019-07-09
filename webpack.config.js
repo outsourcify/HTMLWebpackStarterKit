@@ -34,7 +34,7 @@ function generateHtmlPlugins (templateDir) {
 module.exports = {
     entry: ["./src/js/index.js", "./src/scss/main.scss"],
     output: {
-        filename: "js/index.js",
+        filename: "js/index.[hash:8].js",
         path: path.join(__dirname, "./build/")
     },
     devServer: {
@@ -114,7 +114,7 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: "css/main.css"
+            filename: "css/main.[hash:8].css"
           }),
         new CopyWebpackPlugin([{
             from: 'src/images',
