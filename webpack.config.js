@@ -9,8 +9,9 @@ const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
-// include the js minification plugin
+// include the HTML templating plugin
 const HTMLWebpackPlugin = require("html-webpack-plugin");
+const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 function generateHtmlPlugins (templateDir) {
@@ -123,7 +124,20 @@ module.exports = {
             $: "jquery",
             jQuery: "jquery"
         })
-    ].concat(htmlPlugins),
+    ]
+    .concat(htmlPlugins)
+    .concat(new HtmlBeautifyPlugin({
+        config: {
+            html: {
+                end_with_newline: true,
+                indent_size: 2,
+                indent_with_tabs: true,
+                indent_inner_html: true,
+                preserve_newlines: true,
+                unformatted: ['p', 'i', 'b', 'span']
+            }
+        }
+    })),
     optimization: {
         minimizer: [
             // enable the js minification plugin
