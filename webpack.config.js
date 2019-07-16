@@ -14,6 +14,8 @@ const HTMLWebpackPlugin = require("html-webpack-plugin");
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 function generateHtmlPlugins (templateDir) {
     const templateFiles = fs.readdirSync(path.resolve(__dirname, templateDir))
     return templateFiles.map(item => {
@@ -113,6 +115,7 @@ module.exports = {
         ]
     },
     plugins: [
+        new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: "css/main.[contenthash:8].css"
           }),
